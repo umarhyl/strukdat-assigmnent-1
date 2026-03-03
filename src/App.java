@@ -1,23 +1,23 @@
 abstract class Mahasiswa {
     private String nama;
-    private String nim;
+    private String nrp;
 
     public Mahasiswa() {
         this.nama = "Belum diisi";
-        this.nim = "0000000";
+        this.nrp = "0000000";
     }
 
-    public Mahasiswa(String nama, String nim) {
+    public Mahasiswa(String nama, String nrp) {
         this.nama = nama;
-        this.nim = nim;
+        this.nrp = nrp;
     }
 
     public String getNama() {
         return nama;
     }
 
-    public String getNim() {
-        return nim;
+    public String getNrp() {
+        return nrp;
     }
 
     public void setNama(String nama) {
@@ -31,7 +31,7 @@ abstract class Mahasiswa {
 
     public void tampilkanInfo() {
         System.out.println("Nama  : " + nama);
-        System.out.println("NIM   : " + nim);
+        System.out.println("NRP   : " + nrp);
     }
 }
 
@@ -47,8 +47,8 @@ class MahasiswaReguler extends Mahasiswa {
         this.nilaiUas = 0;
     }
 
-    public MahasiswaReguler(String nama, String nim, double nilaiTugas, double nilaiUts, double nilaiUas) {
-        super(nama, nim);
+    public MahasiswaReguler(String nama, String nrp, double nilaiTugas, double nilaiUts, double nilaiUas) {
+        super(nama, nrp);
         this.nilaiTugas = nilaiTugas;
         this.nilaiUts = nilaiUts;
         this.nilaiUas = nilaiUas;
@@ -70,8 +70,8 @@ class MahasiswaBeasiswa extends Mahasiswa {
         this.nilaiWawancara = 0;
     }
 
-    public MahasiswaBeasiswa(String nama, String nim, double nilaiAkademik, double nilaiWawancara) {
-        super(nama, nim);
+    public MahasiswaBeasiswa(String nama, String nrp, double nilaiAkademik, double nilaiWawancara) {
+        super(nama, nrp);
         this.nilaiAkademik = nilaiAkademik;
         this.nilaiWawancara = nilaiWawancara;
     }
@@ -84,9 +84,9 @@ class MahasiswaBeasiswa extends Mahasiswa {
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("=== Materi 1: Class & Object ===");
+        System.out.println("===Class & Object ===");
         MahasiswaReguler objekDefault = new MahasiswaReguler();
-        MahasiswaBeasiswa objekData = new MahasiswaBeasiswa("Bima", "2401002", 90, 84);
+        MahasiswaBeasiswa objekData = new MahasiswaBeasiswa("Umar", "5027251005", 90, 84);
         objekDefault.tampilkanInfo();
         System.out.println("Object ini dibuat dari class MahasiswaReguler.");
         System.out.println("-------------------------------");
@@ -102,8 +102,8 @@ public class App {
 
         System.out.println("=== Materi 3: 4 Pilar OOP ===");
         Mahasiswa[] dataMahasiswa = {
-            new MahasiswaReguler("Alya", "2401001", 85, 80, 88),
-            new MahasiswaBeasiswa("Bima", "2401002", 90, 84)
+            new MahasiswaReguler("Alya", "5027251111", 85, 80, 88),
+            new MahasiswaBeasiswa("Bima", "5027251006", 90, 84)
         };
 
         for (Mahasiswa mahasiswa : dataMahasiswa) {

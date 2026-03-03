@@ -21,16 +21,16 @@ Contoh class pada source code:
 ```java
 abstract class Mahasiswa {
     private String nama;
-    private String nim;
+    private String nrp;
 
     public Mahasiswa() {
         this.nama = "Belum diisi";
-        this.nim = "0000000";
+        this.nrp = "0000000";
     }
 
-    public Mahasiswa(String nama, String nim) {
+    public Mahasiswa(String nama, String nrp) {
         this.nama = nama;
-        this.nim = nim;
+        this.nrp = nrp;
     }
 
     public abstract double hitungNilaiAkhir();
@@ -42,7 +42,7 @@ Object dibuat dari class turunan `Mahasiswa` di method `main`.
 
 ```java
 MahasiswaReguler objekDefault = new MahasiswaReguler();
-MahasiswaBeasiswa objekData = new MahasiswaBeasiswa("Bima", "2401002", 90, 84);
+MahasiswaBeasiswa objekData = new MahasiswaBeasiswa("Bima", "5027251006", 90, 84);
 ```
 
 ---
@@ -57,12 +57,12 @@ Contoh constructor parent (default dan ber-parameter):
 ```java
 public Mahasiswa() {
     this.nama = "Belum diisi";
-    this.nim = "0000000";
+    this.nrp = "0000000";
 }
 
-public Mahasiswa(String nama, String nim) {
+public Mahasiswa(String nama, String nrp) {
     this.nama = nama;
-    this.nim = nim;
+    this.nrp = nrp;
 }
 ```
 
@@ -76,8 +76,8 @@ public MahasiswaReguler() {
     this.nilaiUas = 0;
 }
 
-public MahasiswaReguler(String nama, String nim, double nilaiTugas, double nilaiUts, double nilaiUas) {
-    super(nama, nim);
+public MahasiswaReguler(String nama, String nrp, double nilaiTugas, double nilaiUts, double nilaiUas) {
+    super(nama, nrp);
     this.nilaiTugas = nilaiTugas;
     this.nilaiUts = nilaiUts;
     this.nilaiUas = nilaiUas;
@@ -97,7 +97,7 @@ Data penting disembunyikan dengan `private`, lalu diakses lewat method.
 
 ```java
 private String nama;
-private String nim;
+private String nrp;
 
 public String getNama() {
     return nama;
@@ -128,7 +128,7 @@ class MahasiswaReguler extends Mahasiswa
 class MahasiswaBeasiswa extends Mahasiswa
 ```
 
-Keduanya memakai constructor parent lewat `super(nama, nim)`.
+Keduanya memakai constructor parent lewat `super(nama, nrp)`.
 
 ### 4. Polymorphism
 Method `hitungNilaiAkhir()` dioverride di masing-masing class turunan, lalu dipanggil lewat referensi `Mahasiswa`.
