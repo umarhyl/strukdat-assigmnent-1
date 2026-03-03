@@ -3,7 +3,6 @@
 ## Mata Kuliah
 Struktur Data dan Pemrograman Berorientasi Objek
 
-## Identitas
 - **Nama**: Umar
 - **NRP**: 5027251005
 - **Kelas**: B
