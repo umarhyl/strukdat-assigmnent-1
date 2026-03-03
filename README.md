@@ -47,9 +47,9 @@ MahasiswaBeasiswa objekData = new MahasiswaBeasiswa("Bima", "5027251006", 90, 84
 
 ---
 
-## Constructor & Destructor
+## Constructor
 
-### 1. Constructor
+### Constructor
 Constructor dipakai untuk mengisi nilai awal saat object dibuat.
 
 Contoh constructor parent (default dan ber-parameter):
@@ -83,12 +83,6 @@ public MahasiswaReguler(String nama, String nrp, double nilaiTugas, double nilai
     this.nilaiUas = nilaiUas;
 }
 ```
-
-### 2. Destructor
-Java tidak memiliki destructor seperti C++.
-Pembersihan memori ditangani otomatis oleh Garbage Collector (GC).
-
----
 
 ## 4 Pilar OOP
 
