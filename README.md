@@ -9,7 +9,7 @@ Struktur Data dan Pemrograman Berorientasi Objek
 
 ---
 
-## Materi 1 - Class & Object
+## Class & Object
 
 ### 1. Class
 Pada program ini, class utama yang dipakai adalah `Mahasiswa` (abstract class), lalu diturunkan menjadi:
@@ -47,7 +47,7 @@ MahasiswaBeasiswa objekData = new MahasiswaBeasiswa("Bima", "5027251006", 90, 84
 
 ---
 
-## Materi 2 - Constructor & Destructor
+## Constructor & Destructor
 
 ### 1. Constructor
 Constructor dipakai untuk mengisi nilai awal saat object dibuat.
@@ -90,7 +90,7 @@ Pembersihan memori ditangani otomatis oleh Garbage Collector (GC).
 
 ---
 
-## Materi 3 - 4 Pilar OOP
+## 4 Pilar OOP
 
 ### 1. Encapsulation
 Data penting disembunyikan dengan `private`, lalu diakses lewat method.
