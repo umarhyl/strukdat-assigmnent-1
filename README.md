@@ -12,37 +12,41 @@ Struktur Data dan Pemrograman Berorientasi Objek
 ## Class & Object
 
 ### 1. Class
-Pada program ini, class utama yang dipakai adalah `Mahasiswa` (abstract class), lalu diturunkan menjadi:
-- `MahasiswaReguler`
-- `MahasiswaBeasiswa`
+**Class adalah blueprint/cetakan untuk membuat object.**
+
+Pada program ini, class utama yang dipakai adalah `Hewan` (abstract class), lalu diturunkan menjadi:
+- `Kucing`
+- `Anjing`
 
 Contoh class pada source code:
 
 ```java
-abstract class Mahasiswa {
+abstract class Hewan {
     private String nama;
-    private String nrp;
+    private int umur;
 
-    public Mahasiswa() {
+    public Hewan() {
         this.nama = "Belum diisi";
-        this.nrp = "0000000";
+        this.umur = 0;
     }
 
-    public Mahasiswa(String nama, String nrp) {
+    public Hewan(String nama, int umur) {
         this.nama = nama;
-        this.nrp = nrp;
+        this.umur = umur;
     }
 
-    public abstract double hitungNilaiAkhir();
+    public abstract String bersuara();
 }
 ```
 
 ### 2. Object
-Object dibuat dari class turunan `Mahasiswa` di method `main`.
+**Object adalah hasil nyata (instance) dari class.**
+
+Object dibuat dari class turunan `Hewan` di method `main`.
 
 ```java
-MahasiswaReguler objekDefault = new MahasiswaReguler();
-MahasiswaBeasiswa objekData = new MahasiswaBeasiswa("Bima", "5027251006", 90, 84);
+Kucing objekDefault = new Kucing();
+Anjing objekData = new Anjing("Bruno", 3, "Golden Retriever");
 ```
 
 ---
@@ -50,48 +54,48 @@ MahasiswaBeasiswa objekData = new MahasiswaBeasiswa("Bima", "5027251006", 90, 84
 ## Constructor
 
 ### Constructor
+**Constructor adalah method khusus yang otomatis dipanggil saat object dibuat untuk mengisi nilai awal.**
+
 Constructor dipakai untuk mengisi nilai awal saat object dibuat.
 
 Contoh constructor parent (default dan ber-parameter):
 
 ```java
-public Mahasiswa() {
+public Hewan() {
     this.nama = "Belum diisi";
-    this.nrp = "0000000";
+    this.umur = 0;
 }
 
-public Mahasiswa(String nama, String nrp) {
+public Hewan(String nama, int umur) {
     this.nama = nama;
-    this.nrp = nrp;
+    this.umur = umur;
 }
 ```
 
 Contoh constructor child:
 
 ```java
-public MahasiswaReguler() {
+public Kucing() {
     super();
-    this.nilaiTugas = 0;
-    this.nilaiUts = 0;
-    this.nilaiUas = 0;
+    this.warnaBulu = "-";
 }
 
-public MahasiswaReguler(String nama, String nrp, double nilaiTugas, double nilaiUts, double nilaiUas) {
-    super(nama, nrp);
-    this.nilaiTugas = nilaiTugas;
-    this.nilaiUts = nilaiUts;
-    this.nilaiUas = nilaiUas;
+public Kucing(String nama, int umur, String warnaBulu) {
+    super(nama, umur);
+    this.warnaBulu = warnaBulu;
 }
 ```
 
 ## 4 Pilar OOP
 
 ### 1. Encapsulation
+**Encapsulation adalah membungkus data agar tidak diakses langsung dari luar class.**
+
 Data penting disembunyikan dengan `private`, lalu diakses lewat method.
 
 ```java
 private String nama;
-private String nrp;
+private int umur;
 
 public String getNama() {
     return nama;
@@ -106,31 +110,37 @@ public void setNama(String nama) {
 ```
 
 ### 2. Abstraction
-`Mahasiswa` dibuat sebagai abstract class dan memiliki abstract method.
+**Abstraction adalah menampilkan fitur penting dan menyembunyikan detail implementasi.**
+
+`Hewan` dibuat sebagai abstract class dan memiliki abstract method.
 
 ```java
-abstract class Mahasiswa {
-    public abstract double hitungNilaiAkhir();
+abstract class Hewan {
+    public abstract String bersuara();
 }
 ```
 
 ### 3. Inheritance
-Class turunan mewarisi class induk `Mahasiswa`.
+**Inheritance adalah pewarisan sifat/method dari class induk ke class turunan.**
+
+Class turunan mewarisi class induk `Hewan`.
 
 ```java
-class MahasiswaReguler extends Mahasiswa
-class MahasiswaBeasiswa extends Mahasiswa
+class Kucing extends Hewan
+class Anjing extends Hewan
 ```
 
-Keduanya memakai constructor parent lewat `super(nama, nrp)`.
+Keduanya memakai constructor parent lewat `super(nama, umur)`.
 
 ### 4. Polymorphism
-Method `hitungNilaiAkhir()` dioverride di masing-masing class turunan, lalu dipanggil lewat referensi `Mahasiswa`.
+**Polymorphism adalah satu tipe referensi bisa memiliki banyak bentuk perilaku saat runtime.**
+
+Method `bersuara()` dioverride di masing-masing class turunan, lalu dipanggil lewat referensi `Hewan`.
 
 ```java
-for (Mahasiswa mahasiswa : dataMahasiswa) {
-    mahasiswa.tampilkanInfo();
-    System.out.printf("Nilai Akhir: %.2f%n", mahasiswa.hitungNilaiAkhir());
+for (Hewan hewan : dataHewan) {
+    hewan.tampilkanInfo();
+    System.out.println("Suara : " + hewan.bersuara());
 }
 ```
 
@@ -138,7 +148,7 @@ Ini menunjukkan runtime polymorphism: method yang dipanggil menyesuaikan tipe ob
 
 Ringkasan yang ditampilkan program:
 
-1. Abstraction → `abstract class Mahasiswa`
+1. Abstraction → `abstract class Hewan`
 2. Encapsulation → atribut `private` + getter/setter
-3. Inheritance → `MahasiswaReguler` & `MahasiswaBeasiswa` mewarisi `Mahasiswa`
-4. Polymorphism → `hitungNilaiAkhir()` dioverride di class turunan
+3. Inheritance → `Kucing` & `Anjing` mewarisi `Hewan`
+4. Polymorphism → `bersuara()` dioverride di class turunan

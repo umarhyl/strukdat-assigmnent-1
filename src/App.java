@@ -1,25 +1,30 @@
-abstract class Mahasiswa {
+// Abstraction: class abstract sebagai blueprint umum Hewan
+abstract class Hewan {
+    // Encapsulation: data disembunyikan dengan akses private
     private String nama;
-    private String nrp;
+    private int umur;
 
-    public Mahasiswa() {
-        this.nama = "Belum diisi";
-        this.nrp = "0000000";
+    // Constructor default
+    public Hewan() {
+        this.nama = "Hewan tanpa nama";
+        this.umur = 0;
     }
 
-    public Mahasiswa(String nama, String nrp) {
+    // Constructor ber-parameter
+    public Hewan(String nama, int umur) {
         this.nama = nama;
-        this.nrp = nrp;
+        this.umur = umur;
     }
 
     public String getNama() {
         return nama;
     }
 
-    public String getNrp() {
-        return nrp;
+    public int getUmur() {
+        return umur;
     }
 
+    // Encapsulation: validasi sebelum data diubah
     public void setNama(String nama) {
         if (nama == null || nama.isBlank()) {
             throw new IllegalArgumentException("Nama tidak boleh kosong");
@@ -27,95 +32,108 @@ abstract class Mahasiswa {
         this.nama = nama;
     }
 
-    public abstract double hitungNilaiAkhir();
+    // Abstraction: detail perhitungan diserahkan ke class turunan
+    public abstract String bersuara();
 
     public void tampilkanInfo() {
         System.out.println("Nama  : " + nama);
-        System.out.println("NRP   : " + nrp);
+        System.out.println("Umur  : " + umur + " tahun");
     }
 }
 
-class MahasiswaReguler extends Mahasiswa {
-    private final double nilaiTugas;
-    private final double nilaiUts;
-    private final double nilaiUas;
+// Inheritance: Kucing mewarisi Hewan
+class Kucing extends Hewan {
+    private final String warnaBulu;
 
-    public MahasiswaReguler() {
+    public Kucing() {
         super();
-        this.nilaiTugas = 0;
-        this.nilaiUts = 0;
-        this.nilaiUas = 0;
+        this.warnaBulu = "-";
     }
 
-    public MahasiswaReguler(String nama, String nrp, double nilaiTugas, double nilaiUts, double nilaiUas) {
-        super(nama, nrp);
-        this.nilaiTugas = nilaiTugas;
-        this.nilaiUts = nilaiUts;
-        this.nilaiUas = nilaiUas;
+    public Kucing(String nama, int umur, String warnaBulu) {
+        super(nama, umur);
+        this.warnaBulu = warnaBulu;
     }
 
     @Override
-    public double hitungNilaiAkhir() {
-        return (0.30 * nilaiTugas) + (0.30 * nilaiUts) + (0.40 * nilaiUas);
+    public void tampilkanInfo() {
+        super.tampilkanInfo();
+        System.out.println("Jenis : Kucing");
+        System.out.println("Warna : " + warnaBulu);
+    }
+
+    // Polymorphism (override): implementasi khusus kucing
+    @Override
+    public String bersuara() {
+        return "Meong meong";
     }
 }
 
-class MahasiswaBeasiswa extends Mahasiswa {
-    private final double nilaiAkademik;
-    private final double nilaiWawancara;
+// Inheritance: Anjing mewarisi Hewan
+class Anjing extends Hewan {
+    private final String ras;
 
-    public MahasiswaBeasiswa() {
+    public Anjing() {
         super();
-        this.nilaiAkademik = 0;
-        this.nilaiWawancara = 0;
+        this.ras = "-";
     }
 
-    public MahasiswaBeasiswa(String nama, String nrp, double nilaiAkademik, double nilaiWawancara) {
-        super(nama, nrp);
-        this.nilaiAkademik = nilaiAkademik;
-        this.nilaiWawancara = nilaiWawancara;
+    public Anjing(String nama, int umur, String ras) {
+        super(nama, umur);
+        this.ras = ras;
     }
 
     @Override
-    public double hitungNilaiAkhir() {
-        return (0.70 * nilaiAkademik) + (0.30 * nilaiWawancara);
+    public void tampilkanInfo() {
+        super.tampilkanInfo();
+        System.out.println("Jenis : Anjing");
+        System.out.println("Ras   : " + ras);
+    }
+
+    // Polymorphism (override): implementasi khusus anjing
+    @Override
+    public String bersuara() {
+        return "Guk guk";
     }
 }
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("===Class & Object ===");
-        MahasiswaReguler objekDefault = new MahasiswaReguler();
-        MahasiswaBeasiswa objekData = new MahasiswaBeasiswa("Umar", "5027251005", 90, 84);
+        System.out.println("[1] Class & Object");
+        Kucing objekDefault = new Kucing();
+        Anjing objekData = new Anjing("Bruno", 3, "Golden Retriever");
+
         objekDefault.tampilkanInfo();
-        System.out.println("Object ini dibuat dari class MahasiswaReguler.");
-        System.out.println("-------------------------------");
+        System.out.println("Dibuat dari class Kucing");
+        System.out.println();
+
         objekData.tampilkanInfo();
-        System.out.println("Object ini dibuat dari class MahasiswaBeasiswa.");
-        System.out.println();
+        System.out.println("Dibuat dari class Anjing");
+        System.out.println("-------------------------------\n");
 
-        System.out.println("=== Materi 2: Constructor & Destructor ===");
-        System.out.println("Constructor default dipakai pada objekDefault (tanpa parameter).");
-        System.out.println("Constructor ber-parameter dipakai pada objekData dan dataMahasiswa.");
-        System.out.println("Java tidak memiliki destructor manual; memori dikelola Garbage Collector.");
-        System.out.println();
+        System.out.println("[2] Constructor");
+        System.out.println("objekDefault pakai constructor kosong");
+        System.out.println("objekData pakai constructor dengan parameter");
+        System.out.println("(Di Java, memori dibersihkan otomatis oleh GC)");
+        System.out.println("-------------------------------\n");
 
-        System.out.println("=== Materi 3: 4 Pilar OOP ===");
-        Mahasiswa[] dataMahasiswa = {
-            new MahasiswaReguler("Alya", "5027251111", 85, 80, 88),
-            new MahasiswaBeasiswa("Bima", "5027251006", 90, 84)
+        System.out.println("[3] 4 Pilar OOP");
+        // Polymorphism: satu tipe referensi (Hewan) untuk object berbeda
+        Hewan[] dataHewan = {
+            new Kucing("Milo", 2, "Oren"),
+            new Anjing("Buddy", 4, "Husky")
         };
 
-        for (Mahasiswa mahasiswa : dataMahasiswa) {
-            mahasiswa.tampilkanInfo();
-            System.out.printf("Nilai Akhir: %.2f%n", mahasiswa.hitungNilaiAkhir());
+        for (Hewan hewan : dataHewan) {
+            hewan.tampilkanInfo();
+            System.out.println("Suara : " + hewan.bersuara());
             System.out.println("-------------------------------");
         }
 
-        System.out.println("Ringkasan Pilar:");
-        System.out.println("1. Abstraction  -> class abstract Mahasiswa");
-        System.out.println("2. Encapsulation-> atribut private + getter/setter");
-        System.out.println("3. Inheritance  -> MahasiswaReguler & MahasiswaBeasiswa extends Mahasiswa");
-        System.out.println("4. Polymorphism -> method hitungNilaiAkhir() di-override");
+        System.out.println("Ringkasannya:");
+        System.out.println("- Abstraction: class abstract Hewan");
+        System.out.println("- Encapsulation: atribut private + getter/setter");
+        System.out.println("- Inheritance: Kucing dan Anjing mewarisi Hewan");
+        System.out.println("- Polymorphism: method bersuara() beda hasil tiap object");
     }
 }
