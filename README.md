@@ -1,4 +1,4 @@
-# OOP - Object Oriented Programming
+# strukdat-assignment-1
 
 ## Mata Kuliah
 Struktur Data dan Pemrograman Berorientasi Objek
